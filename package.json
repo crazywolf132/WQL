@@ -1,0 +1,29 @@
+{
+	"name": "wql",
+	"version": "1.0.0",
+	"description": "",
+	"main": "lib/index.js",
+	"files": [
+		"libs"
+	],
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"build": "babel src --out-dir lib --copy-files",
+		"dev": "nodemon --exec babel-node ./app.js"
+	},
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"@babel/cli": "^7.2.3",
+		"@babel/core": "^7.2.2",
+		"@babel/node": "^7.2.2",
+		"@babel/preset-env": "^7.3.1",
+		"@babel/register": "^7.0.0",
+		"babel-core": "7.0.0-bridge.0",
+		"babel-loader": "^8.0.5",
+		"nodemon": "^1.18.9"
+	},
+	"dependencies": {
+		"lodash": "^4.17.15"
+	}
+}

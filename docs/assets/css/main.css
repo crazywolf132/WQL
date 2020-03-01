@@ -1,0 +1,202 @@
+:root {
+  /* General */
+    --theme-color                       : #4DF3F4;
+  	--base-font-size							      : 16px;
+  	--link-color 								        : var(--theme-color);
+  	--link-text-decoration 						  : none;
+    /* --heading-h3-color							  : #17D9AA; */
+    --heading-h3-color                  : #4DF3F4;
+
+    /* Cover */
+    --cover-heading-color                      	  : #555555;
+
+    /* Nav Links */
+    --sidebar-nav-link-background-color           : ;
+    --sidebar-nav-link-background-color--active   : ;
+    --sidebar-nav-link-background-color--hover    : ;
+    --sidebar-nav-link-background-image           : ;
+    --sidebar-nav-link-background-image--active   : ;
+    --sidebar-nav-link-background-image--hover    : ;
+    --sidebar-nav-link-background-position        : ;
+    --sidebar-nav-link-background-position--active: ;
+    --sidebar-nav-link-background-position--hover : ;
+    --sidebar-nav-link-background-repeat          : ;
+    --sidebar-nav-link-background-size            : ;
+    --sidebar-nav-link-background-size--active    : ;
+    --sidebar-nav-link-background-size--hover     : ;
+    --sidebar-nav-link-border-color               : ;
+    --sidebar-nav-link-border-color--active       : ;
+    --sidebar-nav-link-border-color--hover        : ;
+    --sidebar-nav-link-border-radius              : ;
+    --sidebar-nav-link-border-style               : solid;
+    --sidebar-nav-link-border-style--active       : ;
+    --sidebar-nav-link-border-style--hover        : ;
+    --sidebar-nav-link-border-width               : 0;
+    --sidebar-nav-link-border-width--active       : ;
+    --sidebar-nav-link-border-width--hover        : ;
+    --sidebar-nav-link-color                      : var(--base-color);
+    --sidebar-nav-link-color--active              : ;
+    --sidebar-nav-link-color--hover               : var(--theme-color);
+    --sidebar-nav-link-font-weight                : ;
+    --sidebar-nav-link-font-weight--active        : ;
+    --sidebar-nav-link-font-weight--hover         : ;
+    --sidebar-nav-link-margin                     : ;
+    --sidebar-nav-link-padding                    : 0.25em 0;
+    --sidebar-nav-link-text-decoration            : ;
+    --sidebar-nav-link-text-decoration--active    : none;
+    --sidebar-nav-link-text-decoration--hover     : none;
+    --sidebar-nav-link-text-decoration-color      : ;
+    --sidebar-nav-link-transition                 : ;
+    --sidebar-nav-link-border-color--active       : ;
+   
+  	/* Nav Page Links */
+    --sidebar-nav-pagelink-background-image             : ;
+    --sidebar-nav-pagelink-background-image--active     : ;
+    --sidebar-nav-pagelink-background-image--collapse   : ;
+    --sidebar-nav-pagelink-background-image--loaded     : ;
+    --sidebar-nav-pagelink-background-position          : ;
+    --sidebar-nav-pagelink-background-position--active  : ;
+    --sidebar-nav-pagelink-background-position--collapse: ;
+    --sidebar-nav-pagelink-background-position--loaded  : ;
+    --sidebar-nav-pagelink-background-repeat            : no-repeat;
+    --sidebar-nav-pagelink-padding                      : ;
+    --sidebar-nav-pagelink-transition                   : var(--sidebar-nav-link-transition);
+    
+    /* Toggle */
+    --sidebar-toggle-background                   : ;
+    --sidebar-toggle-border-color                 : ;
+    --sidebar-toggle-border-radius                : var(--border-radius-s);
+    --sidebar-toggle-border-style                 : solid;
+    --sidebar-toggle-border-width                 : 0;
+    --sidebar-toggle-height                       : 36px;
+    --sidebar-toggle-icon-color                   : var(--theme-color);
+    --sidebar-toggle-icon-height                  : 10px;
+    --sidebar-toggle-icon-stroke-width            : 2px;
+    --sidebar-toggle-icon-width                   : 16px;
+    --sidebar-toggle-offset-left                  : 0;
+    --sidebar-toggle-offset-top                   : calc(35px - (var(--sidebar-toggle-height) / 2));
+    --sidebar-toggle-width                        : 44px;
+    
+    --search-margin                          	  : ;
+    --search-padding                         	  : ;
+    --search-input-border-width          		  : 0 0 1px 0;
+
+    /* Buttons */
+    --cover-button-background                     : ;
+    --cover-button-background--hover              : ;
+    --cover-button-border                         : 1px solid rgb(44, 44, 44);
+    --cover-button-border--hover                  : ;
+    --cover-button-border-radius                  : var(--border-radius-m);
+    --cover-button-box-shadow                     : ;
+    --cover-button-box-shadow--hover              : ;
+    --cover-button-color                          : rgb(44, 44, 44);
+    --cover-button-color--hover                   : ;
+    --cover-button-padding                        : 0.5em 2rem;
+    --cover-button-text-decoration                : none;
+    --cover-button-text-decoration--hover         : ;
+    --cover-button-text-decoration-color          : ;
+    --cover-button-text-decoration-color--hover   : ;
+    --cover-button-transition                     : all var(--duration-fast) ease-in-out;
+
+    /* Buttons - Primary */
+    --cover-button-primary-background             : var(--theme-color);
+    --cover-button-primary-background--hover      : ;
+    --cover-button-primary-border                 : 1px solid var(--theme-color);
+    --cover-button-primary-border--hover          : ;
+    --cover-button-primary-box-shadow             : ;
+    --cover-button-primary-box-shadow--hover      : ;
+    --cover-button-primary-color                  : rgb(44, 44, 44);
+    --cover-button-primary-color--hover           : ;
+    --cover-button-primary-text-decoration        : ;
+    --cover-button-primary-text-decoration--hover : ;
+    --cover-button-primary-text-decoration-color  : ;
+    --cover-button-primary-text-decoration-color--hover   : ;
+
+
+    /* Headings */
+    --heading-color                               : #4DF3F4;
+    --heading-font-family                         : ;
+    --heading-font-weight                         : ;
+    --heading-margin                              : 2.5rem 0 0;
+    --heading-padding                             : ;
+    --heading-h1-border-color                     : ;
+    --heading-h1-border-style                     : ;
+    --heading-h1-border-width                     : ;
+    --heading-h1-color                            : ;
+    --heading-h1-font-family                      : ;
+    --heading-h1-font-size                        : var(--font-size-xxl);
+    --heading-h1-font-weight                      : ;
+    --heading-h1-margin                           : ;
+    --heading-h1-padding                          : ;
+    --heading-h2-border-color                     : ;
+    --heading-h2-border-style                     : ;
+    --heading-h2-border-width                     : ;
+    --heading-h2-color                            : #CBEC6B;
+    --heading-h2-font-family                      : ;
+    --heading-h2-font-size                        : var(--font-size-xl);
+    --heading-h2-font-weight                      : ;
+    --heading-h2-margin                           : ;
+    --heading-h2-padding                          : ;
+    --heading-h3-border-color                     : ;
+    --heading-h3-border-style                     : ;
+    --heading-h3-border-width                     : ;
+    --heading-h3-color                            : #788FFF;
+    --heading-h3-font-family                      : ;
+    --heading-h3-font-size                        : var(--font-size-l);
+    --heading-h3-font-weight                      : ;
+    --heading-h3-margin                           : ;
+    --heading-h3-padding                          : ;
+    --heading-h4-border-color                     : ;
+    --heading-h4-border-style                     : ;
+    --heading-h4-border-width                     : ;
+    --heading-h4-color                            : #FFDA43;
+    --heading-h4-font-family                      : ;
+    --heading-h4-font-size                        : var(--font-size-m);
+    --heading-h4-font-weight                      : ;
+    --heading-h4-margin                           : ;
+    --heading-h4-padding                          : ;
+
+    --heading-h5-border-color                     : ;
+    --heading-h5-border-style                     : ;
+    --heading-h5-border-width                     : ;
+    --heading-h5-color                            : ;
+    --heading-h5-font-family                      : ;
+    --heading-h5-font-size                        : var(--font-size-s);
+    --heading-h5-font-weight                      : ;
+    --heading-h5-margin                           : ;
+    --heading-h5-padding                          : ;
+
+    --heading-h6-border-color                     : ;
+    --heading-h6-border-style                     : ;
+    --heading-h6-border-width                     : ;
+    --heading-h6-color                            : ;
+    --heading-h6-font-family                      : ;
+    --heading-h6-font-size                        : var(--font-size-xs);
+    --heading-h6-font-weight                      : ;
+    --heading-h6-margin                           : ;
+    --heading-h6-padding                          : ;
+}
+.sidebar li > p {
+  font-weight: 700;
+}
+
+/****** CODE HIGHLIGHTING ******/
+.token.string {
+  color: #94FBEA;
+}
+
+.token.keyword {
+  color: #CBEC6B;
+}
+
+.token.operator {
+  color: #FFAB87;
+}
+
+.token.boolean,
+.token.number {
+  color: #93A7FF;
+}
+.token.function, .token.property {
+  color: #FFC805;
+}

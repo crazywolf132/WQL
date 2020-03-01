@@ -1,0 +1,16 @@
+{
+    @tester {
+        subreddit,
+        retrieved_on,
+        author
+    },
+    cat = "wow",
+    @subreddit_id ~= "t5_6" ?
+        {
+            link_id as dog
+        }
+    :
+        {
+            &tester
+        }
+}
