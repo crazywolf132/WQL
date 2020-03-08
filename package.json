@@ -11,8 +11,9 @@
 		"build": "babel src --out-dir lib --copy-files",
 		"dev": "nodemon --exec babel-node ./app.js"
 	},
-	"author": "",
+	"author": "crazywolf132",
 	"license": "",
+	"url": "https://github.com/crazywolf132/WQL",
 	"devDependencies": {
 		"@babel/cli": "^7.2.3",
 		"@babel/core": "^7.2.2",
