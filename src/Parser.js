@@ -38,7 +38,7 @@ export default class Parser extends Lexer {
 		if (!found) {
 			throw this.createUnexpected(this.lookahead);
 		} else {
-			return found.value;
+			return found;
 		}
 	}
 
