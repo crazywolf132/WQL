@@ -1,9 +1,5 @@
 import _ from 'lodash';
-
-const log = console.log;
-const util = require('util');
-const inspect = data =>
-	util.inspect(data, false, null, true /* enable colors */);
+import { log } from './utils';
 
 export default class Interpreter {
 	constructor(ast, data) {
