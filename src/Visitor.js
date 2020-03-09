@@ -88,11 +88,16 @@ export default class TaggedTemplateVisitor {
 			let _else = node.ifelse._else[0];
 			let _else_name = _else.name;
 			let result = {
-				_if: this[node.ifelse._if[0].type]({
-					...node.ifelse._if[0],
-					_fromIf: true
-				}),
-				_else: this[node.ifelse._else[0].type](node.ifelse._else[0])
+				_comparitor: node.ifelse.comparitor,
+				_check: node.ifelse._check,
+				_if:
+					node.ifelse._if[0] instanceof Object && node.ifelse._if[0].type
+						? this[node.ifelse._if[0].type](node.ifelse._if[0], true)
+						: node.ifelse._if,
+				_else:
+					node.ifelse._else[0] instanceof Object && node.ifelse._else[0].type
+						? this[node.ifelse._else[0].type](node.ifelse._else[0], true)
+						: node.ifelse._else
 			};
 			field.ifelse = result;
 		}
