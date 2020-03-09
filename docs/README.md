@@ -22,7 +22,7 @@ it in a way that it does not require a pre-defined data structure, or types.
 		deep {
 			down {
 				here {
-                    id is NUMBER,
+                    			id is NUMBER,
 					dogName is STRING,
 					catName,
 					meals <1> : [
