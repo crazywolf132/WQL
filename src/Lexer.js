@@ -115,6 +115,9 @@ export default class Lexer {
 			case '?':
 				++this.pos;
 				return { type: TokenType.QMARK };
+			case '!':
+				++this.pos;
+				return { type: TokenType.NOT };
 			case '@':
 				++this.pos;
 				return { type: TokenType.AT };
