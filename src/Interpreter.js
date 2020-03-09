@@ -17,12 +17,17 @@ export default class Interpreter {
 			if (!ast[key].isVar) {
 				// We can actually add this to our object...
 				if (this.hasKey(ast[key], 'isList')) {
-					// log('key ::: ', key);
-					obj[ast[key].alias || key] = this.listType(data[key], ast[key]);
+					obj[ast[key].alias || key] = this.listType(
+						data[key],
+						ast[key]
+					);
 				} else if (this.hasKey(ast[key], 'fields')) {
 					obj[ast[key].alias || key] = this.compile(ast[key], data);
 				} else if (this.hasKey(ast[key], 'RequiredType')) {
-					obj[ast[key].alias || key] = this.requiredType(data[key], ast[key]);
+					obj[ast[key].alias || key] = this.requiredType(
+						data[key],
+						ast[key]
+					);
 				} else if (key === 'fields') {
 					// We need to go into this object, and get its objects...
 					obj = this.compile(ast[key], data);
@@ -40,7 +45,10 @@ export default class Interpreter {
 						? this.compile(ast[key].ifelse._else, data)
 						: data[ast[key].ifelse._else];
 				} else {
-					obj[ast[key].alias || key] = this.basicField(data[key], ast[key]);
+					obj[ast[key].alias || key] = this.basicField(
+						data[key],
+						ast[key]
+					);
 				}
 			}
 		});
@@ -65,7 +73,11 @@ export default class Interpreter {
 	}
 
 	basicField(data, field) {
-		return data ? data : field.defaultValue ? field.defaultValue : undefined;
+		return data
+			? data
+			: field.defaultValue
+			? field.defaultValue
+			: undefined;
 	}
 
 	hasKey(obj, keyName) {

@@ -54,10 +54,6 @@ export default class TaggedTemplateVisitor {
 			return this.transformFields([node]);
 		}
 
-		log('------------------');
-		log(field);
-		log('------------');
-
 		return field;
 	}
 
@@ -91,13 +87,21 @@ export default class TaggedTemplateVisitor {
 				_comparitor: node.ifelse.comparitor,
 				_check: node.ifelse._check,
 				_if:
-					node.ifelse._if[0] instanceof Object && node.ifelse._if[0].type
-						? this[node.ifelse._if[0].type](node.ifelse._if[0], true)
+					node.ifelse._if[0] instanceof Object &&
+					node.ifelse._if[0].type
+						? this[node.ifelse._if[0].type](
+								node.ifelse._if[0],
+								true
+						  )
 						: node.ifelse._if,
 				_else:
-					node.ifelse._else[0] instanceof Object && node.ifelse._else[0].type
-						? this[node.ifelse._else[0].type](node.ifelse._else[0], true)
-						: node.ifelse._else
+					node.ifelse._else[0] instanceof Object &&
+					node.ifelse._else[0].type
+						? this[node.ifelse._else[0].type](
+								node.ifelse._else[0],
+								true
+						  )
+						: node.ifelse._else,
 			};
 			field.ifelse = result;
 		}
@@ -138,9 +142,6 @@ export const traverse = (
 	visitor = new TaggedTemplateVisitor(null, null),
 	isArray = true
 ) => {
-	// log('HEHRE');
-	// log(parsed);
-
 	if (Array.isArray(parsed)) {
 		return parsed.map(node => travel(node, visitor));
 	} else {
