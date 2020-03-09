@@ -88,7 +88,12 @@ export default class Parser extends Lexer {
 	}
 
 	parseDefault() {
-		this.expect(TokenType.EQUALS);
+		let comparitor = this.expectMany(
+			TokenType.EQUALS,
+			TokenType.GT,
+			TokenType.LT,
+			TokenType.NOT
+		);
 		// checking if the is a value, then a '?'... as this would
 		// imply that we are dealing with an if statement.
 		let _var = this.expect(this.lookahead.type).value;
@@ -96,11 +101,15 @@ export default class Parser extends Lexer {
 			// This means it is an if-else statement
 			let _check = _var;
 			// let _if = this.expect(this.lookahead.type).value;
-			let _if = this.parseFieldList();
+			let _if = this.match(TokenType.LBRACE)
+				? this.parseFieldList()
+				: this.expect(this.lookahead.type).value;
 			this.expect(TokenType.COLON);
 			// let _else = this.expect(this.lookahead.type).value;
-			let _else = this.parseFieldList();
-			return { _check, _if, _else };
+			let _else = this.match(TokenType.LBRACE)
+				? this.parseFieldList()
+				: this.expect(this.lookahead.type).value;
+			return { comparitor: comparitor.type.name, _check, _if, _else };
 		} else {
 			return _var;
 		}
