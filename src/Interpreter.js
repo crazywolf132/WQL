@@ -28,10 +28,17 @@ export default class Interpreter {
 					obj = this.compile(ast[key], data);
 				} else if (this.hasKey(ast[key], 'ifelse')) {
 					// performing the ifstatement our self.
-					obj[key] =
-						data[key] === ast[key].ifelse._check
-							? data[ast[key].ifelse._if]
-							: data[ast[key].ifelse._else];
+					obj[key] = this.compare2(
+						data[key],
+						ast[key].ifelse._comparitor,
+						ast[key].ifelse._check
+					)
+						? ast[key].ifelse._if instanceof Object
+							? this.compile(ast[key].ifelse._if, data)
+							: data[ast[key].ifelse._if]
+						: ast[key].ifelse._else instanceof Object
+						? this.compile(ast[key].ifelse._else, data)
+						: data[ast[key].ifelse._else];
 				} else {
 					obj[ast[key].alias || key] = this.basicField(data[key], ast[key]);
 				}
