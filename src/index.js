@@ -1,6 +1,7 @@
 import Interpreter from './Interpreter';
 import Parser from './Parser';
 import TaggedTemplateVisitor, { traverse } from './Visitor';
+import { log } from './utils';
 
 export default function(format, data) {
 	const parsed = new Parser(format).parseQuery();
@@ -15,4 +16,4 @@ export function generateTree(format) {
 	return query;
 }
 
-export { Parser, traverse };
+export { Parser, traverse, log };
