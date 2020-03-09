@@ -75,4 +75,18 @@ export default class Interpreter {
 	cleanList(data) {
 		return _.compact(data);
 	}
+
+	compare2(obj1, comparitor, obj2) {
+		switch (comparitor) {
+			case '>':
+				return obj1 >= obj2;
+			case '<':
+				return obj1 <= obj2;
+			case '!':
+				return obj1 != obj2;
+			case '=':
+			default:
+				return obj1 === obj2;
+		}
+	}
 }
