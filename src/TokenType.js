@@ -21,6 +21,7 @@ export const TokenType = {
 	AMP: { klass: Token.Punctuator, name: '&' },
 	AT: { klass: Token.Punctuator, name: '@' },
 	QMARK: { klass: Token.Punctuator, name: '?' },
+	NOT: { klass: Token.Punctuator, name: '!' },
 	HASH: { klass: Token.Punctuator, name: '#' },
 	EQUALS: { klass: Token.Punctuator, name: '=' },
 	TILD: { klass: Token.Punctuator, name: '~' },
