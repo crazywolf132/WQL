@@ -1,5 +1,5 @@
 <p align="center">
-<img src="docs/assets/images/WQL_black.svg" height="200px" alt="WQL Lang" title="WQL Lang">
+<img src="https://raw.githubusercontent.com/crazywolf132/WQL/master/docs/assets/images/WQL.svg" height="200px" alt="WQL Lang" title="WQL Lang">
 </p>
 
 <b>Version</b> <small>1.0.2</small>
@@ -26,7 +26,7 @@ it in a way that it does not require a pre-defined data structure, or types.
 		deep {
 			down {
 				here {
-                    id is NUMBER,
+                    			id is NUMBER,
 					dogName is STRING,
 					catName,
 					meals <1> : [
@@ -35,9 +35,9 @@ it in a way that it does not require a pre-defined data structure, or types.
 						}
 					]
 				},
-                defaultValue = {
-                    dinoName
-                }
+				defaultValue = {
+				    dinoName
+				}
 			}
 		}
 	}
