@@ -175,7 +175,9 @@ export default class Parser extends Lexer {
 			? this.parseDefault()
 			: null;
 		const RequiredType = this.eat(TokenType.IS) ? this.parseType() : null;
-		const fields = this.match(TokenType.LBRACE) ? this.parseFieldList() : [];
+		const fields = this.match(TokenType.LBRACE)
+			? this.parseFieldList()
+			: [];
 
 		if (listFields) {
 			return {
@@ -183,7 +185,7 @@ export default class Parser extends Lexer {
 				name,
 				alias,
 				sizeLimit,
-				listFields
+				listFields,
 			};
 		}
 		return {
@@ -192,7 +194,7 @@ export default class Parser extends Lexer {
 			alias,
 			RequiredType,
 			defaultValue,
-			fields
+			fields,
 		};
 	}
 
@@ -212,7 +214,7 @@ export default class Parser extends Lexer {
 			case TokenType.FALSE:
 				return {
 					type: 'Literal',
-					value: JSON.parse(this.lex().value)
+					value: JSON.parse(this.lex().value),
 				};
 		}
 
@@ -222,11 +224,21 @@ export default class Parser extends Lexer {
 	parseReference() {
 		this.expect(TokenType.AMP);
 
-		if (this.match(TokenType.NUMBER) || this.match(TokenType.IDENTIFIER)) {
-			return { type: 'Reference', name: this.lex().value };
-		}
+		const name = this.expectMany(TokenType.NUMBER, TokenType.IDENTIFIER)
+			.value;
 
-		throw this.createUnexpected(this.lookahead);
+		const alias = this.eat(TokenType.AS) ? this.parseIdentifier() : null;
+
+		// if (this.match(TokenType.NUMBER) || this.match(TokenType.IDENTIFIER)) {
+		// 	const alias = this.eat(TokenType.AS)
+		// 		? this.parseIdentifier()
+		// 		: null;
+		// }
+		if (name) {
+			return { type: 'Reference', name, alias };
+		} else {
+			throw this.createUnexpected(this.lookahead);
+		}
 	}
 
 	parseVar() {
@@ -234,7 +246,9 @@ export default class Parser extends Lexer {
 		const name = this.expect(TokenType.IDENTIFIER).value;
 		// Checking if it is an if-else statement or an obj with '{'
 		const ifelse = this.eat(TokenType.TILD) ? this.parseDefault() : null;
-		const fields = this.match(TokenType.LBRACE) ? this.parseFieldList() : [];
+		const fields = this.match(TokenType.LBRACE)
+			? this.parseFieldList()
+			: [];
 
 		return { type: 'Var', name, ifelse, fields, isVar: true };
 	}

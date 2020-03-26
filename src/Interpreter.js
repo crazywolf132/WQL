@@ -33,7 +33,7 @@ export default class Interpreter {
 					obj = this.compile(ast[key], data);
 				} else if (this.hasKey(ast[key], 'ifelse')) {
 					// performing the ifstatement our self.
-					obj[key] = this.compare2(
+					obj[ast[key].alias || key] = this.compare2(
 						data[key],
 						ast[key].ifelse._comparitor,
 						ast[key].ifelse._check
