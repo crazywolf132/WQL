@@ -96,6 +96,8 @@ export default class Interpreter {
 				return obj1 <= obj2;
 			case '!':
 				return obj1 != obj2;
+			case '*':
+				return String(obj1).includes(String(obj2));
 			case '=':
 			default:
 				return obj1 === obj2;

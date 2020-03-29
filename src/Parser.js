@@ -88,11 +88,13 @@ export default class Parser extends Lexer {
 	}
 
 	parseDefault() {
+		// TODO: Allow this to only work if we are sure it is a flow control statement.
 		let comparitor = this.expectMany(
 			TokenType.EQUALS,
 			TokenType.GT,
 			TokenType.LT,
-			TokenType.NOT
+			TokenType.NOT,
+			TokenType.WILD
 		);
 		// checking if the is a value, then a '?'... as this would
 		// imply that we are dealing with an if statement.
@@ -229,11 +231,6 @@ export default class Parser extends Lexer {
 
 		const alias = this.eat(TokenType.AS) ? this.parseIdentifier() : null;
 
-		// if (this.match(TokenType.NUMBER) || this.match(TokenType.IDENTIFIER)) {
-		// 	const alias = this.eat(TokenType.AS)
-		// 		? this.parseIdentifier()
-		// 		: null;
-		// }
 		if (name) {
 			return { type: 'Reference', name, alias };
 		} else {

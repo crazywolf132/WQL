@@ -130,6 +130,12 @@ export default class Lexer {
 			case ';':
 				++this.pos;
 				return { type: TokenType.SEMICOLON };
+			case '+':
+				++this.pos;
+				return { type: TokenType.PLUS };
+			case '*':
+				++this.pos;
+				return { type: TokenType.WILD };
 		}
 
 		if (

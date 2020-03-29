@@ -26,6 +26,8 @@ export const TokenType = {
 	EQUALS: { klass: Token.Punctuator, name: '=' },
 	TILD: { klass: Token.Punctuator, name: '~' },
 	SEMICOLON: { klass: Token.Punctuator, name: ';' },
+	PLUS: { klass: Token.Punctuator, name: '+' },
+	WILD: { klass: Token.Punctuator, name: '*' },
 
 	// Keywords
 	NULL: { klass: Token.Keyword, name: 'null' },
@@ -36,5 +38,5 @@ export const TokenType = {
 	TYPE_STRING: { klass: Token.Keyword, name: 'string' },
 	TYPE_NUMBER: { klass: Token.Keyword, name: 'number' },
 	TYPE_LIST: { klass: Token.Keyword, name: 'list' },
-	TYPE_OBJ: { klass: Token.Keyword, name: 'obj' }
+	TYPE_OBJ: { klass: Token.Keyword, name: 'obj' },
 };

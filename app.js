@@ -127,7 +127,7 @@ const ifStatement = `
       strDrinkThumb as img,
       strAlcoholic as alcoholic
     },
-    @strAlcoholic ~= "Alcoholic" ? { &drink } : null,
+    @strAlcoholic ~* "Non" ? { &drink } : null,
     &strAlcoholic as item
 }
 `;
@@ -204,7 +204,7 @@ const cocktails = [
 		strVideo: null,
 		strCategory: 'Shot',
 		strIBA: null,
-		strAlcoholic: 'Alcoholic',
+		strAlcoholic: 'Non Alcoholic',
 		strGlass: 'Shot glass',
 		strInstructions: 'Layered in a shot glass.',
 		strInstructionsES: null,
@@ -260,6 +260,6 @@ const int = new Interpreter(result, cocktails);
 // log();
 // log(p.parseQuery());
 // log(inspect(p));
-log(result);
+// log(result);
 log(int.result);
 // log();
