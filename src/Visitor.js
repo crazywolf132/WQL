@@ -40,6 +40,10 @@ export default class TaggedTemplateVisitor {
 			field.alias = node.alias;
 		}
 
+		if (node.params) {
+			field.params = node.params;
+		}
+
 		if (node.defaultValue) {
 			field.defaultValue = node.defaultValue;
 		}

@@ -6,13 +6,24 @@ export default class Interpreter {
 		this.ast = ast;
 		this.data = data;
 
-		this.result = !Array.isArray(this.data)
+		this.result = (!Array.isArray(this.data)
 			? this.compile(this.ast, this.data)
-			: this.data.map(d => this.compile(this.ast, d));
+			: this.data.map(d => this.compile(this.ast, d))
+		).filter(result => Object.keys(result).length >= 1);
+	}
+
+	meetsParams(data, params) {
+		let requiredCount = params.length;
+		let found = 0;
+		params.forEach(p => {
+			if (this.compare2(data[p.name], p.condition, p.value)) found++;
+		});
+		return requiredCount === found;
 	}
 
 	compile(ast, data) {
 		let obj = {};
+		if (Object.keys(ast).length === 0) return data;
 		Object.keys(ast).forEach(key => {
 			if (!ast[key].isVar) {
 				// We can actually add this to our object...
@@ -22,7 +33,14 @@ export default class Interpreter {
 						ast[key]
 					);
 				} else if (this.hasKey(ast[key], 'fields')) {
-					obj[ast[key].alias || key] = this.compile(ast[key], data);
+					if (
+						this.hasKey(ast[key], 'params') &&
+						this.meetsParams(data, ast[key].params)
+					)
+						obj[ast[key].alias || key] = this.compile(
+							ast[key],
+							data
+						);
 				} else if (this.hasKey(ast[key], 'RequiredType')) {
 					obj[ast[key].alias || key] = this.requiredType(
 						data[key],

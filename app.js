@@ -132,6 +132,16 @@ const ifStatement = `
 }
 `;
 
+const searchStatement = `
+{
+	item (strDrink * "AT") {
+		strDrink as name,
+		strDrinkThumb as img,
+		strAlcoholic as alcoholic
+	}
+}
+`;
+
 const cocktails = [
 	{
 		idDrink: '17222',
@@ -204,7 +214,7 @@ const cocktails = [
 		strVideo: null,
 		strCategory: 'Shot',
 		strIBA: null,
-		strAlcoholic: 'Non Alcoholic',
+		strAlcoholic: 'Alcoholic',
 		strGlass: 'Shot glass',
 		strInstructions: 'Layered in a shot glass.',
 		strInstructionsES: null,
@@ -251,7 +261,7 @@ const cocktails = [
 
 // const data = require('./DATA.json').data[0];
 
-const p = new Parser(ifStatement).parse();
+const p = new Parser(searchStatement).parse();
 const r = new Reducer(p).result;
 // log(p);
 // log(r);

@@ -170,6 +170,7 @@ export default class Parser extends Lexer {
 
 	parseField() {
 		const name = this.parseIdentifier();
+		const params = this.eat(TokenType.LPAREN) ? this.parseParams() : null;
 		const alias = this.eat(TokenType.AS) ? this.parseIdentifier() : null;
 		const sizeLimit = this.match(TokenType.LT) ? this.parseSize() : null;
 		const listFields = this.eat(TokenType.COLON) ? this.parseList() : null;
@@ -192,12 +193,47 @@ export default class Parser extends Lexer {
 		}
 		return {
 			type: 'Field',
+			params,
 			name,
 			alias,
 			RequiredType,
 			defaultValue,
 			fields,
 		};
+	}
+
+	parseParams() {
+		// We are going to expect the following:
+		// IDENTIFIER CONDITION LITERAL,
+
+		const params = [];
+
+		let first = true;
+		while (!this.match(TokenType.RPAREN) && !this.end()) {
+			if (first) {
+				first = false;
+			} else {
+				this.expect(TokenType.COMMA);
+			}
+
+			// Getting the IDENTIFIER.
+			let name = this.expect(TokenType.IDENTIFIER).value;
+			let condition = this.expectMany(
+				TokenType.EQUALS,
+				TokenType.GT,
+				TokenType.LT,
+				TokenType.NOT,
+				TokenType.WILD
+			).type.name;
+			let value = this.expectMany(TokenType.NUMBER, TokenType.STRING)
+				.value;
+
+			params.push({ name, condition, value });
+		}
+
+		this.expect(TokenType.RPAREN);
+
+		return params;
 	}
 
 	parseValue() {
