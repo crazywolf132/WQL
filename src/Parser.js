@@ -111,7 +111,12 @@ export default class Parser extends Lexer {
 			let _else = this.match(TokenType.LBRACE)
 				? this.parseFieldList()
 				: this.expect(this.lookahead.type).value;
-			return { comparitor: comparitor.type.name, _check, _if, _else };
+			return {
+				comparitor: comparitor.type.name,
+				_check,
+				_if,
+				_else,
+			};
 		} else {
 			return _var;
 		}
