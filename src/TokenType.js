@@ -28,6 +28,7 @@ export const TokenType = {
 	SEMICOLON: { klass: Token.Punctuator, name: ';' },
 	PLUS: { klass: Token.Punctuator, name: '+' },
 	WILD: { klass: Token.Punctuator, name: '*' },
+	CONVERT: { klass: Token.Punctuator, name: '->' },
 
 	// Keywords
 	NULL: { klass: Token.Keyword, name: 'null' },

@@ -33,14 +33,9 @@ export default class Interpreter {
 						ast[key]
 					);
 				} else if (this.hasKey(ast[key], 'fields')) {
-					if (
-						this.hasKey(ast[key], 'params') &&
-						this.meetsParams(data, ast[key].params)
-					)
-						obj[ast[key].alias || key] = this.compile(
-							ast[key],
-							data
-						);
+					let children = this.handleChildren(data, ast[key]);
+					if (children != undefined)
+						obj[ast[key].alias || key] = children;
 				} else if (this.hasKey(ast[key], 'RequiredType')) {
 					obj[ast[key].alias || key] = this.requiredType(
 						data[key],
@@ -88,6 +83,24 @@ export default class Interpreter {
 					})
 			  )
 			: this.compile(field.fields, data || {});
+	}
+
+	handleChildren(data, field) {
+		if (
+			(this.hasKey(field, 'params') &&
+				this.meetsParams(data, field.params)) ||
+			!this.hasKey(field, 'params')
+		)
+			return this.hasKey(field, 'toConvert')
+				? this.convertToType(data, field)
+				: this.compile(field, data);
+	}
+
+	convertToType(data, field) {
+		let children = Object.values(this.compile(field, data)).filter(
+			i => i != undefined
+		);
+		return field.toConvert === 'LIST' ? children : children.join(' ');
 	}
 
 	basicField(data, field) {

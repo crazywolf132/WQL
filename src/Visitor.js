@@ -44,6 +44,10 @@ export default class TaggedTemplateVisitor {
 			field.params = node.params;
 		}
 
+		if (node.toConvert) {
+			field.toConvert = node.toConvert;
+		}
+
 		if (node.defaultValue) {
 			field.defaultValue = node.defaultValue;
 		}

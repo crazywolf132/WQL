@@ -172,6 +172,9 @@ export default class Parser extends Lexer {
 		const name = this.parseIdentifier();
 		const params = this.eat(TokenType.LPAREN) ? this.parseParams() : null;
 		const alias = this.eat(TokenType.AS) ? this.parseIdentifier() : null;
+		const toConvert = this.eat(TokenType.CONVERT)
+			? this.parseConversion()
+			: null;
 		const sizeLimit = this.match(TokenType.LT) ? this.parseSize() : null;
 		const listFields = this.eat(TokenType.COLON) ? this.parseList() : null;
 		const defaultValue = this.match(TokenType.EQUALS)
@@ -196,6 +199,7 @@ export default class Parser extends Lexer {
 			params,
 			name,
 			alias,
+			toConvert,
 			RequiredType,
 			defaultValue,
 			fields,
@@ -234,6 +238,12 @@ export default class Parser extends Lexer {
 		this.expect(TokenType.RPAREN);
 
 		return params;
+	}
+
+	parseConversion() {
+		// Should have already consumed the `->` conversion character.
+		return this.expectMany(TokenType.TYPE_LIST, TokenType.TYPE_STRING)
+			.value;
 	}
 
 	parseValue() {
