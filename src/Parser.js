@@ -227,6 +227,14 @@ export default class Parser extends Lexer {
 
 			// Getting the IDENTIFIER.
 			let name = this.expect(TokenType.IDENTIFIER).value;
+			if (this.eat(TokenType.OR)) {
+				do {
+					if (!Array.isArray(name)) {
+						name = [name];
+					}
+					name.push(this.expect(TokenType.IDENTIFIER).value);
+				} while (this.eat(TokenType.OR));
+			}
 			let condition = this.expectMany(
 				TokenType.EQUALS,
 				TokenType.GT,
