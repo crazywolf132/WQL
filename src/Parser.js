@@ -250,6 +250,23 @@ export default class Parser extends Lexer {
 				TokenType.TRUE
 			).value;
 
+			if (this.eat(TokenType.OR)) {
+				do {
+					if (!Array.isArray(value)) {
+						value = [value];
+					}
+					value.push(
+						this.expectMany(
+							TokenType.NUMBER,
+							TokenType.STRING,
+							TokenType.NULL,
+							TokenType.FALSE,
+							TokenType.TRUE
+						).value
+					);
+				} while (this.eat(TokenType.OR));
+			}
+
 			params.push({ name, condition, value });
 		}
 
