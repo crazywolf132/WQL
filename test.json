@@ -1,0 +1,34 @@
+{
+	"cocktails": [
+		{
+			"name": "Non alcoholic dog",
+			"type": "Non alcoholic",
+			"wow": 1,
+			"owner": "moon"
+		},
+		{
+			"name": "Cat",
+			"type": "Non alcoholic",
+			"wow": 2,
+			"owner": "hamment"
+		},
+		{
+			"name": "Horse",
+			"type": "Non alcoholic",
+			"wow": 3,
+			"owner": "rizk"
+		},
+		{
+			"name": "Alcoholic puppy",
+			"type": "Alcoholic",
+			"wow": 4,
+			"owner": "dancer"
+		},
+		{
+			"name": "Rum pony",
+			"type": "Rum",
+			"wow": 5,
+			"owner": "moon"
+		}
+	]
+}
