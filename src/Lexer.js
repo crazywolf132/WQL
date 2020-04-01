@@ -136,6 +136,13 @@ export default class Lexer {
 			case '*':
 				++this.pos;
 				return { type: TokenType.WILD };
+			case '-':
+				if (this.source.charAt(this.pos + 1) === '>') {
+					++this.pos;
+					++this.pos;
+					return { type: TokenType.CONVERT };
+				}
+				break;
 		}
 
 		if (
