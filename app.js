@@ -134,10 +134,11 @@ const ifStatement = `
 
 const searchStatement = `
 {
-	item (strDrink * "AT") {
-		strDrink as name,
-		strDrinkThumb as img,
-		strAlcoholic as alcoholic
+	item(name || type * "Non" || "Rum", owner = "moon") {
+		name,
+		type,
+		wow as id,
+		owner
 	}
 }
 `;
@@ -214,7 +215,7 @@ const cocktails = [
 		strVideo: null,
 		strCategory: 'Shot',
 		strIBA: null,
-		strAlcoholic: 'Alcoholic',
+		strAlcoholic: 'Non Alcoholic',
 		strGlass: 'Shot glass',
 		strInstructions: 'Layered in a shot glass.',
 		strInstructionsES: null,
@@ -266,7 +267,10 @@ const r = new Reducer(p).result;
 // log(p);
 // log(r);
 const result = traverse(r, new TaggedTemplateVisitor(null, null));
-const int = new Interpreter(result, cocktails);
+const int = new Interpreter(
+	result,
+	require('./test.json').cocktails.filter((i, index) => index < 5)
+);
 // log();
 // log(p.parseQuery());
 // log(inspect(p));
