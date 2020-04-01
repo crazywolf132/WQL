@@ -291,7 +291,10 @@ export default class Parser extends Lexer {
 				return this.parseVariable();
 			case TokenType.Number:
 			case TokenType.String:
-				return { type: 'Literal', value: this.lex().value };
+				return {
+					type: 'Literal',
+					value: this.lex().value,
+				};
 			case TokenType.NULL:
 			case TokenType.TRUE:
 			case TokenType.FALSE:
@@ -328,7 +331,13 @@ export default class Parser extends Lexer {
 			? this.parseFieldList()
 			: [];
 
-		return { type: 'Var', name, ifelse, fields, isVar: true };
+		return {
+			type: 'Var',
+			name,
+			ifelse,
+			fields,
+			isVar: true,
+		};
 	}
 
 	parseVariable() {
