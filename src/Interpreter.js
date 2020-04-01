@@ -16,6 +16,41 @@ export default class Interpreter {
 		let requiredCount = params.length;
 		let found = 0;
 		params.forEach(p => {
+			// If p.name is a list... we need to check each name against the values, and see if atleast one matches.
+			if (Array.isArray(p.name)) {
+				// Its 1 because it is an OR statement. So only 1 must be true.
+				let newCount = 1;
+				let newFound = 0;
+
+				if (Array.isArray(p.value)) {
+					// If we also have multiple values... check them both at the same time.
+					p.name.forEach(n => {
+						p.value.forEach(v => {
+							if (this.compare2(data[n], p.condition, v))
+								newFound++;
+						});
+					});
+				} else {
+					p.name.forEach(n => {
+						if (this.compare2(data[n], p.condition, p.value))
+							newFound++;
+					});
+				}
+
+				if (newFound >= newCount) return found++;
+			} else if (Array.isArray(p.value)) {
+				// if the values is a list... we need to check to see if atleast 1 matches.
+				let newCount = 1;
+				let newFound = 0;
+
+				p.value.forEach(v => {
+					if (this.compare2(data[p.name], p.condition, v)) {
+						newFound++;
+					}
+				});
+
+				if (newFound >= newCount) found++;
+			}
 			if (this.compare2(data[p.name], p.condition, p.value)) found++;
 		});
 		return requiredCount === found;
