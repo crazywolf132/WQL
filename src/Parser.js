@@ -242,8 +242,13 @@ export default class Parser extends Lexer {
 				TokenType.NOT,
 				TokenType.WILD
 			).type.name;
-			let value = this.expectMany(TokenType.NUMBER, TokenType.STRING)
-				.value;
+			let value = this.expectMany(
+				TokenType.NUMBER,
+				TokenType.STRING,
+				TokenType.NULL,
+				TokenType.FALSE,
+				TokenType.TRUE
+			).value;
 
 			params.push({ name, condition, value });
 		}
