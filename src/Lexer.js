@@ -33,6 +33,8 @@ export default class Lexer {
 				return TokenType.TYPE_NUMBER;
 			case 'LIST':
 				return TokenType.TYPE_LIST;
+			case 'LIST_KEYS':
+				return TokenType.TYPE_LIST_KEYS;
 			case 'OBJ':
 				return TokenType.TYPE_OBJ;
 		}

@@ -277,8 +277,11 @@ export default class Parser extends Lexer {
 
 	parseConversion() {
 		// Should have already consumed the `->` conversion character.
-		return this.expectMany(TokenType.TYPE_LIST, TokenType.TYPE_STRING)
-			.value;
+		return this.expectMany(
+			TokenType.TYPE_LIST,
+			TokenType.TYPE_LIST_KEYS,
+			TokenType.TYPE_STRING
+		).value;
 	}
 
 	parseValue() {
