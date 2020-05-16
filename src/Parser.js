@@ -29,7 +29,7 @@ export default class Parser extends Lexer {
 
 	expectMany(...type) {
 		let found;
-		type.forEach(t => {
+		type.forEach((t) => {
 			if (this.match(t)) {
 				found = this.lex();
 			}
@@ -47,7 +47,7 @@ export default class Parser extends Lexer {
 		while (!this.end()) {
 			switch (this.lookahead.type) {
 				case TokenType.HASH:
-					this.parseImport().map(impt => result.push(impt));
+					this.parseImport().map((impt) => result.push(impt));
 					break;
 				case TokenType.LBRACE:
 				default:

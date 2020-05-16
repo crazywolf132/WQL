@@ -8,14 +8,14 @@ export default class Interpreter {
 
 		this.result = (!Array.isArray(this.data)
 			? this.compile(this.ast, this.data)
-			: this.data.map(d => this.compile(this.ast, d))
-		).filter(result => Object.keys(result).length >= 1);
+			: this.data.map((d) => this.compile(this.ast, d))
+		).filter((result) => Object.keys(result).length >= 1);
 	}
 
 	meetsParams(data, params) {
 		let requiredCount = params.length;
 		let found = 0;
-		params.forEach(p => {
+		params.forEach((p) => {
 			// If p.name is a list... we need to check each name against the values, and see if atleast one matches.
 			if (Array.isArray(p.name)) {
 				// Its 1 because it is an OR statement. So only 1 must be true.
@@ -24,14 +24,14 @@ export default class Interpreter {
 
 				if (Array.isArray(p.value)) {
 					// If we also have multiple values... check them both at the same time.
-					p.name.forEach(n => {
-						p.value.forEach(v => {
+					p.name.forEach((n) => {
+						p.value.forEach((v) => {
 							if (this.compare2(data[n], p.condition, v))
 								newFound++;
 						});
 					});
 				} else {
-					p.name.forEach(n => {
+					p.name.forEach((n) => {
 						if (this.compare2(data[n], p.condition, p.value))
 							newFound++;
 					});
@@ -43,7 +43,7 @@ export default class Interpreter {
 				let newCount = 1;
 				let newFound = 0;
 
-				p.value.forEach(v => {
+				p.value.forEach((v) => {
 					if (this.compare2(data[p.name], p.condition, v)) {
 						newFound++;
 					}
@@ -59,7 +59,7 @@ export default class Interpreter {
 	compile(ast, data) {
 		let obj = {};
 		if (Object.keys(ast).length === 0) return data;
-		Object.keys(ast).forEach(key => {
+		Object.keys(ast).forEach((key) => {
 			if (!ast[key].isVar) {
 				// We can actually add this to our object...
 				if (this.hasKey(ast[key], 'isList')) {
@@ -84,20 +84,19 @@ export default class Interpreter {
 					obj = this.compile(ast[key], data);
 				} else if (this.hasKey(ast[key], 'ifelse')) {
 					// performing the ifstatement our self.
-					obj[ast[key].alias || key] = this.compare2(
-						data[key],
-						ast[key].ifelse._comparitor,
-						ast[key].ifelse._check
-					)
-						? ast[key].ifelse._if instanceof Object
-							? this.compile(ast[key].ifelse._if, data)
-							: data[ast[key].ifelse._if]
-						: ast[key].ifelse._else instanceof Object
-						? this.compile(ast[key].ifelse._else, data)
-						: data[ast[key].ifelse._else];
+					obj[ast[key].alias || key] = this.flowControl(
+						data,
+						key,
+						ast[key]
+					);
+				} else if (this.hasKey(ast[key], 'toConvert')) {
+					obj[ast[key].alias || key] = this.convertToType(
+						data[key] || data,
+						ast[key]
+					);
 				} else {
 					obj[ast[key].alias || key] = this.basicField(
-						data[key],
+						data[key] || null,
 						ast[key]
 					);
 				}
@@ -108,7 +107,9 @@ export default class Interpreter {
 	}
 
 	requiredType(data, field) {
-		return typeof data === field.RequiredType.toLowerCase() ? data : null;
+		return typeof data === field.RequiredType.value.toLowerCase()
+			? data
+			: null;
 	}
 
 	listType(data, field) {
@@ -136,15 +137,24 @@ export default class Interpreter {
 			}
 		}
 	}
+
+	flowControl(data, key, field) {
+		return this.compare2(
+			data[key],
+			field.ifelse._comparitor,
+			field.ifelse._check
 		)
-			return this.hasKey(field, 'toConvert')
-				? this.convertToType(data, field)
-				: this.compile(field, data);
+			? field.ifelse._if instanceof Object
+				? this.compile(field.ifelse._if, data)
+				: data[field.ifelse._if] || field.ifelse._if
+			: field.ifelse._else instanceof Object
+			? this.compile(field.ifelse._else, data)
+			: data[field.ifelse._else] || field.ifelse._else;
 	}
 
 	convertToType(data, field) {
 		let children = Object.values(this.compile(field, data)).filter(
-			i => i != undefined
+			(i) => i != undefined
 		);
 		return field.toConvert === 'LIST'
 			? children
