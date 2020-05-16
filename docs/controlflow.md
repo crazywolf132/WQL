@@ -1,90 +1,217 @@
 ## Control flow
+
 Máni has a variety of control flow statemnets to help you with your code. Control flow is used to determine which chunks of code are run, and how many times.
 
 ### If statement
+
 It can be handy to have the ability to run different sections of code, when under different conditions. An example of this might be an age checker for a movie.
 
-~~~ mani
-    let age = 17;
+**DATA**
 
-    if (age >= 60) {
-        say "Free movie!";
+```json
+{
+	"age": 17,
+	"ticket1": "Nightmare On Elm Street",
+	"ticket2": "Bugs Bunny"
+}
+```
+
+```WQL
+{
+    @adult {
+        ticket1 as ticket
+    },
+    @child {
+        ticket2 as ticket
+    },
+    {
+        @age ~= 17 ? { &adult } : { &child },
+        &age
     }
-~~~
+}
+```
 
-Along with the if-statement, there is a counter. An else statement. This will run in the event that the if-statement didnt meet the set conditions.
-~~~ mani
-    let age = 15;
-    if (age >= 20) {
-        say "Your an adult now!";
-    } else {
-        say "Your still a child!";
+**Result**
+
+```json
+{
+	"ticket": "Nightmare On Elm Street"
+}
+```
+
+#### How it works
+
+Using a [variable](variables.md) `@age`, we are assign it a value. The value just so happens to be an if else statement. We tell it, that it is
+an if else statement with the `~` before the equals sign, as shown above.
+
+After the `=` sign comes the value we are checking. The way this works is, whatever your variable is called, it will check the data with the same name, and compare it to the value provided. In this case, it will check `age` from the dataset, and compare it to `17` which comes after the `~=`.
+
+Next comes the `?`, this is signifying the start of the if statement. This first part is what to do when the statement is true. Please pay attention to the below notice about what to put here.
+
+After this, we then have the else part. This is signified using the `:` symbol.
+
+> This part is required.
+
+What goes here is simply what to do when the condition is not true. Once again, pay attention to the notice below.
+
+?> You can only use custom data for the `IF` and `ELSE` parts if you use a reference to another variable. Otherwise the system treats it like you are requesting a specific field from the dataset.
+
+A javascript version of the above would be the following.
+
+```javascript
+data = {...} // This is just the data from above.
+if (data.age === 17) {
+    return { ticket : data.ticket1 };
+} else {
+    return { ticket: data.ticket2 };
+}
+```
+
+### Different check types
+
+-   `~>` -- Same as `>=`
+-   `~<` -- Same as `<=`
+-   `~=` -- Same as `===`
+-   `~!` -- Same as `!=`
+
+### Params
+
+Params are a handy little function, they will allow you to completely ignore a whole data object if it doesnt meet your requirements.
+
+This can be super handy when you want to cut the amount of data being returned. It also allows us to check against mutliple fields at a time.
+
+?> Params uses a very unique `OR` and `&` system. It is unlike any other language -- That we know of.
+
+Here is an example of what it looks like.
+
+**DATA**
+
+```json
+[
+	{
+		"age": 12,
+		"name": "Frank",
+		"address": "99 Hopkins road"
+	},
+	{
+		"age": 42,
+		"name": "Peter",
+		"address": "12 Bugs Bunny Lane"
+	}
+]
+```
+
+**QUERY**
+
+```WQL
+{
+    person(name = "Frank", age = 12) {
+        name,
+        age,
+        address
     }
-~~~
+}
+```
 
-If you are wanting complex control flow statement, with more conditions. You can use "else if" statements.
+**RESULT**
 
-~~~ mani
-    let age = 15;
-    if (age >= 18) {
-        say "You can see R rated movies";
-    } else if (age >= 15) {
-        say "You can see MA15+ movies";
-    } else {
-        say "You can see PG movies!";
-    }
-~~~
+```json
+{
+	"person": {
+		"name": "Frank",
+		"age": 12,
+		"address": "99 Hopkins road"
+	}
+}
+```
 
-### Switch-case statements
-They are used to match discrete conditions and execute the code matching those discrete conditions. Although this can be achieved by an if-else-if ladder, but using switch-case can be more readable.
+As we can see, the query went through each `Person` object, but only added them to the result if they met the requirements. This is just a small example of its power. If you use the below mentioned `OR` and `&` system. You could check against every field.
 
-Consider the following if-else-if ladder code:
-~~~ mani
-    let day = 1;
-    if (day == 1) {
-        say "Sunday";
-    } else if (day == 2) {
-        say "Monday";
-    } else if (day == 3) {
-        say "Tuesday";
-    } else if (day == 4) {
-        say "Wednesday";
-    } else if (day == 5) {
-        say "Thursday";
-    } else if (day == 6) {
-        say "Friday";
-    } else if (day == 7) {
-        say "Saturday";
-    } else {
-        say "Invalid day";
-    }
-~~~
-The above code can be re-written as switch-case code as follows:
-~~~ mani
-    let day = 1;
-    switch (a) {
-        case 1 :
-            say "Sunday";
-            break;
-        case 2 :
-            say "Monday";
-            break;
-        case 3 :
-            say "Tuesday";
-            break;
-        case 4 :
-            say "Wednesday";
-            break;
-        case 5 :
-            say "Thursday";
-            break;
-        case 6 :
-            say "Friday";
-            break;
-        case 7 :
-            say "Saturday";
-            break;
-        default :
-            say "Invalid day";
-    }
-~~~
+### `OR` and `&` system
+
+WQL takes a different approach to the old fashioned `||` OR and `&&` AND statements, by making it easier to check multiple fields at the same time.
+
+?> These can only be used in `PARAMS` for the moment
+
+#### OR statements
+
+In WQL, we take a different approach to the classic `||` and `&&`. Rather than typing out something like the following.
+
+```javascript
+if (name === 'frank' || name === 'peter') {
+	doSoemthing();
+} else {
+	doSomething();
+}
+```
+
+You could type out the following instead
+
+```WQL
+(name = "frank" || "peter")
+```
+
+Seems ok right? Well, it doesnt stop there. Not only can you check the same field against multiple values, you can also check the same value against multiple fields too. Here is another JavaScript → WQL conversion to demonstrate.
+
+```javascript
+if (name === 'frank' || otherName === 'frank') {
+	doSoemthing();
+} else {
+	doSomething();
+}
+```
+
+would be converted to
+
+```WQL
+(name || otherName = "frank")
+```
+
+Now, the brave few might be asking `What if I combined them, would it still work?` - The answer is YES.
+
+```javascript
+if (
+	name === 'frank' ||
+	otherName === 'frank' ||
+	name === 'peter' ||
+	otherName === 'peter'
+) {
+	doSoemthing();
+} else {
+	doSomething();
+}
+```
+
+would very easily be converted to this
+
+```WQL
+(name || otherName = "frank" || "peter")
+```
+
+How much nicer is that?!?
+
+#### AND statements
+
+The AND statement hasn't changed too much, instead of using an `&&` operator, instead we sepperate it with a `,`...
+
+That's it! Nothing more, nothing less.
+
+```javascript
+if (
+	(name === 'frank' ||
+		otherName === 'frank' ||
+		name === 'peter' ||
+		otherName === 'peter') &&
+	age === 12
+) {
+	doSoemthing();
+} else {
+	doSomething();
+}
+```
+
+would happily convert to:
+
+```WQL
+(name || otherName = "frank" || "peter", age = 12)
+```
