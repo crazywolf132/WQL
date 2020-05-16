@@ -1,64 +1,84 @@
 ## Lists
-Lists (AKA. arrays, or vectors) are a sequence of objects. They are dynamically sized and will always start with an index of 0.
 
-~~~ mani
-    let l = [1, 2.54, "some string", true, false];
+Lists are a large part of data. So, it is only realistic
+that people want to be able to choose what fields they want back from
+them too.
 
-    // lists also have a size method.
-    let n = l.size();   // n is now 5.
-~~~
+WQL allows you to choose which fields you want out of objects in lists extremely easily.
 
-### Accessing elements
-You can access an element of a list with the at method.
-~~~ mani
-    let pets = ["horse", "cat", "dog", "fish", "birds"];
+?> You can still use the `as` operator on all lists
 
-    pets.at(0);     // "horse"
-    pets.at(3);     // "fish"
-~~~
+Here is an example, then we will explain it.
 
-### Adding elements
-You can easily add any object as an element to a list. Simply use the add() method.
-~~~ mani
-    let l = [1, 2, 3, 4];
+```json
+{
+	"company": "myCompany",
+	"companyContacts": {
+		"phone": "123-123-1234",
+		"email": "email@company.com"
+	},
+	"employees": [
+		{
+			"id": 101,
+			"name": "John",
+			"contacts": ["email@employee1.com", "email2@employee1.com"]
+		},
+		{
+			"id": 102,
+			"name": "William",
+			"contacts": null
+		}
+	]
+}
+```
 
-    l.add(5);   // 5 will now be added to the back of the list.
-~~~
+```WQL
+    {
+        employees : [
+            {
+                id,
+                name
+            }
+        ]
+    }
+```
 
-### Contains elements
-You can check if the list you are working with contains an element through the has() method.
-~~~ mani
-    let l = [1, 2.54, "some string", true, false];
+### How it works
 
-    l.has(2.54);    // true
-    l.has("dog");   // false
-~~~
+Using the `:` character after a field, we are telling the system that we are expecting the data to be a certain way. We then use `[]` to define that it is going to be a list.
 
-### Deleting elements
-You can delete an element as easily as you created one. Simply use the del() method.
-~~~ mani
-    let l = ["one", "two", "three", "four"];
+Inside the Square Brackets, we then create our object like normal. As this
+just declares what we would like for each item in the list.
 
-    l = l.del(2);       // l is now ["one", "two", "four"];
-~~~
+Eg.
 
-### Join
-To make things simple for people output the contents of a list, you can use the join() method.
-~~~ mani
-    let l = [1, 2, 3, 4];
+```WQL
+{
+    id,
+    name
+}
+```
 
-    l = l.join(" + ");      // l is now "1 + 2 + 3 + 4";
-~~~
+?> If the field is not a list... it will still treat it like a list, and any fields your asking to be inside it... will all be `undefined`
 
-> This returns a string.
+### List Size Definitions
 
-### As a stack
-For the people wanting to use a stack, push() and pop() methods are avaliable.
-~~~ mani
-    let l = [10, 20, 30, 40];
+Not everyone wants everything from a list, sometimes you only want a specific number of items. WQL accomodates for this.
 
-    l.push(50); // Adds 50 to the stack.
+Using the `<SIZE_NUMBER_HERE>` in your list definition, allows for you
+to specify the maximum size of the list.
 
-    l.pop();    // Returns 50, and removes it from the stack.
-    l.pop();    // Returns 40, and removes it from the stack.
-~~~
+Here is an example.
+
+```WQL
+    {
+        employees <1> : [
+            {
+                id,
+                name
+            }
+        ]
+    }
+```
+
+?> List size, starts at 1. It will also not create extra items if they dont exist.
