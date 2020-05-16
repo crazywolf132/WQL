@@ -1,202 +1,379 @@
 :root {
-  /* General */
-    --theme-color                       : #4DF3F4;
-  	--base-font-size							      : 16px;
-  	--link-color 								        : var(--theme-color);
-  	--link-text-decoration 						  : none;
-    /* --heading-h3-color							  : #17D9AA; */
-    --heading-h3-color                  : #4DF3F4;
+	--theme-color: #e50914;
+	--theme-color-dark: #b20710;
 
-    /* Cover */
-    --cover-heading-color                      	  : #555555;
-
-    /* Nav Links */
-    --sidebar-nav-link-background-color           : ;
-    --sidebar-nav-link-background-color--active   : ;
-    --sidebar-nav-link-background-color--hover    : ;
-    --sidebar-nav-link-background-image           : ;
-    --sidebar-nav-link-background-image--active   : ;
-    --sidebar-nav-link-background-image--hover    : ;
-    --sidebar-nav-link-background-position        : ;
-    --sidebar-nav-link-background-position--active: ;
-    --sidebar-nav-link-background-position--hover : ;
-    --sidebar-nav-link-background-repeat          : ;
-    --sidebar-nav-link-background-size            : ;
-    --sidebar-nav-link-background-size--active    : ;
-    --sidebar-nav-link-background-size--hover     : ;
-    --sidebar-nav-link-border-color               : ;
-    --sidebar-nav-link-border-color--active       : ;
-    --sidebar-nav-link-border-color--hover        : ;
-    --sidebar-nav-link-border-radius              : ;
-    --sidebar-nav-link-border-style               : solid;
-    --sidebar-nav-link-border-style--active       : ;
-    --sidebar-nav-link-border-style--hover        : ;
-    --sidebar-nav-link-border-width               : 0;
-    --sidebar-nav-link-border-width--active       : ;
-    --sidebar-nav-link-border-width--hover        : ;
-    --sidebar-nav-link-color                      : var(--base-color);
-    --sidebar-nav-link-color--active              : ;
-    --sidebar-nav-link-color--hover               : var(--theme-color);
-    --sidebar-nav-link-font-weight                : ;
-    --sidebar-nav-link-font-weight--active        : ;
-    --sidebar-nav-link-font-weight--hover         : ;
-    --sidebar-nav-link-margin                     : ;
-    --sidebar-nav-link-padding                    : 0.25em 0;
-    --sidebar-nav-link-text-decoration            : ;
-    --sidebar-nav-link-text-decoration--active    : none;
-    --sidebar-nav-link-text-decoration--hover     : none;
-    --sidebar-nav-link-text-decoration-color      : ;
-    --sidebar-nav-link-transition                 : ;
-    --sidebar-nav-link-border-color--active       : ;
-   
-  	/* Nav Page Links */
-    --sidebar-nav-pagelink-background-image             : ;
-    --sidebar-nav-pagelink-background-image--active     : ;
-    --sidebar-nav-pagelink-background-image--collapse   : ;
-    --sidebar-nav-pagelink-background-image--loaded     : ;
-    --sidebar-nav-pagelink-background-position          : ;
-    --sidebar-nav-pagelink-background-position--active  : ;
-    --sidebar-nav-pagelink-background-position--collapse: ;
-    --sidebar-nav-pagelink-background-position--loaded  : ;
-    --sidebar-nav-pagelink-background-repeat            : no-repeat;
-    --sidebar-nav-pagelink-padding                      : ;
-    --sidebar-nav-pagelink-transition                   : var(--sidebar-nav-link-transition);
-    
-    /* Toggle */
-    --sidebar-toggle-background                   : ;
-    --sidebar-toggle-border-color                 : ;
-    --sidebar-toggle-border-radius                : var(--border-radius-s);
-    --sidebar-toggle-border-style                 : solid;
-    --sidebar-toggle-border-width                 : 0;
-    --sidebar-toggle-height                       : 36px;
-    --sidebar-toggle-icon-color                   : var(--theme-color);
-    --sidebar-toggle-icon-height                  : 10px;
-    --sidebar-toggle-icon-stroke-width            : 2px;
-    --sidebar-toggle-icon-width                   : 16px;
-    --sidebar-toggle-offset-left                  : 0;
-    --sidebar-toggle-offset-top                   : calc(35px - (var(--sidebar-toggle-height) / 2));
-    --sidebar-toggle-width                        : 44px;
-    
-    --search-margin                          	  : ;
-    --search-padding                         	  : ;
-    --search-input-border-width          		  : 0 0 1px 0;
-
-    /* Buttons */
-    --cover-button-background                     : ;
-    --cover-button-background--hover              : ;
-    --cover-button-border                         : 1px solid rgb(44, 44, 44);
-    --cover-button-border--hover                  : ;
-    --cover-button-border-radius                  : var(--border-radius-m);
-    --cover-button-box-shadow                     : ;
-    --cover-button-box-shadow--hover              : ;
-    --cover-button-color                          : rgb(44, 44, 44);
-    --cover-button-color--hover                   : ;
-    --cover-button-padding                        : 0.5em 2rem;
-    --cover-button-text-decoration                : none;
-    --cover-button-text-decoration--hover         : ;
-    --cover-button-text-decoration-color          : ;
-    --cover-button-text-decoration-color--hover   : ;
-    --cover-button-transition                     : all var(--duration-fast) ease-in-out;
-
-    /* Buttons - Primary */
-    --cover-button-primary-background             : var(--theme-color);
-    --cover-button-primary-background--hover      : ;
-    --cover-button-primary-border                 : 1px solid var(--theme-color);
-    --cover-button-primary-border--hover          : ;
-    --cover-button-primary-box-shadow             : ;
-    --cover-button-primary-box-shadow--hover      : ;
-    --cover-button-primary-color                  : rgb(44, 44, 44);
-    --cover-button-primary-color--hover           : ;
-    --cover-button-primary-text-decoration        : ;
-    --cover-button-primary-text-decoration--hover : ;
-    --cover-button-primary-text-decoration-color  : ;
-    --cover-button-primary-text-decoration-color--hover   : ;
-
-
-    /* Headings */
-    --heading-color                               : #4DF3F4;
-    --heading-font-family                         : ;
-    --heading-font-weight                         : ;
-    --heading-margin                              : 2.5rem 0 0;
-    --heading-padding                             : ;
-    --heading-h1-border-color                     : ;
-    --heading-h1-border-style                     : ;
-    --heading-h1-border-width                     : ;
-    --heading-h1-color                            : ;
-    --heading-h1-font-family                      : ;
-    --heading-h1-font-size                        : var(--font-size-xxl);
-    --heading-h1-font-weight                      : ;
-    --heading-h1-margin                           : ;
-    --heading-h1-padding                          : ;
-    --heading-h2-border-color                     : ;
-    --heading-h2-border-style                     : ;
-    --heading-h2-border-width                     : ;
-    --heading-h2-color                            : #CBEC6B;
-    --heading-h2-font-family                      : ;
-    --heading-h2-font-size                        : var(--font-size-xl);
-    --heading-h2-font-weight                      : ;
-    --heading-h2-margin                           : ;
-    --heading-h2-padding                          : ;
-    --heading-h3-border-color                     : ;
-    --heading-h3-border-style                     : ;
-    --heading-h3-border-width                     : ;
-    --heading-h3-color                            : #788FFF;
-    --heading-h3-font-family                      : ;
-    --heading-h3-font-size                        : var(--font-size-l);
-    --heading-h3-font-weight                      : ;
-    --heading-h3-margin                           : ;
-    --heading-h3-padding                          : ;
-    --heading-h4-border-color                     : ;
-    --heading-h4-border-style                     : ;
-    --heading-h4-border-width                     : ;
-    --heading-h4-color                            : #FFDA43;
-    --heading-h4-font-family                      : ;
-    --heading-h4-font-size                        : var(--font-size-m);
-    --heading-h4-font-weight                      : ;
-    --heading-h4-margin                           : ;
-    --heading-h4-padding                          : ;
-
-    --heading-h5-border-color                     : ;
-    --heading-h5-border-style                     : ;
-    --heading-h5-border-width                     : ;
-    --heading-h5-color                            : ;
-    --heading-h5-font-family                      : ;
-    --heading-h5-font-size                        : var(--font-size-s);
-    --heading-h5-font-weight                      : ;
-    --heading-h5-margin                           : ;
-    --heading-h5-padding                          : ;
-
-    --heading-h6-border-color                     : ;
-    --heading-h6-border-style                     : ;
-    --heading-h6-border-width                     : ;
-    --heading-h6-color                            : ;
-    --heading-h6-font-family                      : ;
-    --heading-h6-font-size                        : var(--font-size-xs);
-    --heading-h6-font-weight                      : ;
-    --heading-h6-margin                           : ;
-    --heading-h6-padding                          : ;
+	--text-color-base: #2e2e46;
+	--text-color-secondary: #646473;
+	--text-color-tertiary: #81818e;
 }
-.sidebar li > p {
-  font-weight: 700;
+
+body {
+	font-size: 100%;
+	line-height: 1.5;
+	color: var(--text-color-base);
+}
+
+* {
+	text-decoration: none !important;
+}
+
+a {
+	transition: all 0.3s linear;
+}
+
+.github-corner {
+	z-index: 5;
+}
+
+/****** Cover Page ******/
+section.cover {
+	padding-bottom: 112px; /* fixed footer (Netflix) height */
+	height: auto;
+	min-height: 100vh;
+	/**
+   * Intended to defeat this inline style on initial boot that flashes when on page load:
+   * https://github.com/docsifyjs/docsify/blob/8352a1e489abc2a7b6361fe02d696e1891a031cd/src/core/render/tpl.js#L56-L70
+   */
+	background: #fff !important;
+}
+
+section.cover .cover-main {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	margin: 0;
+	padding: 32px 16px 0;
+}
+
+section.cover img {
+	width: 400px;
+}
+
+section.cover h1 {
+	margin: 0.625rem 0 1rem;
+}
+
+section.cover blockquote,
+section.cover blockquote p {
+	margin: 0;
+}
+
+section.cover ul {
+	font-size: 1.25rem;
+	line-height: 2rem;
+	display: grid;
+	text-align: left;
+	grid-column-gap: 16px;
+	grid-row-gap: 20px;
+	grid-template-columns: repeat(2, 50%);
+	list-style: none;
+	max-width: unset;
+	margin: 1.5em 0;
+}
+
+section.cover ul li {
+	white-space: nowrap;
+}
+
+section.cover.show ~ .sidebar,
+section.cover.show ~ .sidebar-toggle {
+	display: none;
+}
+
+.cover-main .netflix-logo {
+	position: fixed;
+	display: flex;
+	align-items: center;
+	background: #ffffff;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	padding: 40px;
+	z-index: 5;
+}
+
+.cover-main .netflix-logo .logo {
+	width: 125px;
+	height: 32px;
+	background: url('images/Netflix_Logo.png');
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+
+.cover-main .buttons {
+	width: 100%;
+}
+
+.cover-main .buttons a {
+	font-weight: 700;
+	position: relative;
+	display: inline-block;
+	padding: 12px 25px;
+	font-size: 14px;
+	text-align: center;
+	line-height: 18px;
+	background: #fff;
+	outline: none;
+	border: none;
+	background-color: #fff;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	cursor: pointer;
+	margin: 0 1rem;
+	color: var(--theme-color);
+	overflow: hidden;
+	transition: color 0.25s cubic-bezier(0.215, 0.61, 0.355, 1);
+	vertical-align: baseline;
+	text-transform: uppercase;
+}
+
+.cover-main .buttons a:before,
+.cover-main .buttons a:after {
+	content: '';
+	display: block;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	border: 2px solid var(--theme-color);
+	box-sizing: border-box;
+}
+
+.cover-main .buttons a:after {
+	background: var(--theme-color);
+	transform: translateX(-101%);
+	transition: all 0.2s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.cover-main .buttons a:hover {
+	color: white;
+	box-shadow: 0 5px 16px rgba(229, 9, 20, 0.3);
+}
+
+.cover-main .buttons a:hover:after {
+	transform: translateX(0);
+}
+
+.cover-main .buttons a span {
+	position: relative;
+	z-index: 1;
+}
+
+@media (max-width: 850px) {
+	section.cover ul {
+		grid-template-columns: 100%;
+		padding: 0;
+	}
+
+	section.cover ul li {
+		text-align: center;
+	}
+}
+
+@media (max-width: 450px) {
+	section.cover ul li {
+		white-space: normal;
+	}
+
+	.cover-main .buttons a {
+		width: 100%;
+		margin: 0.2rem 0;
+	}
+}
+
+/****** Sidebar ******/
+.sidebar .sidebar-logo {
+	height: 150px;
+}
+
+.sidebar ul li a {
+	font-size: 15px;
+}
+
+.sidebar ul li a:hover {
+	color: var(--theme-color);
+}
+
+.app-sub-sidebar li:before {
+	display: none;
+}
+
+.sidebar .search .clear-button {
+	cursor: pointer;
+}
+
+/****** Sidebar Toggle ******/
+.sidebar-toggle {
+	cursor: pointer;
+}
+
+body .sidebar-toggle {
+	background: none;
+	top: 1.5rem;
+	left: calc(300px + 1.5rem);
+	cursor: pointer;
+	width: 1.5rem;
+	height: 1.5rem;
+	padding: 0;
+	transition: left 0.25s ease-out;
+}
+
+body .sidebar-toggle span {
+	background-color: var(--theme-color);
+	height: 0.2rem;
+	width: 1.5rem;
+	position: absolute;
+	left: 0;
+	margin: 0;
+	transform-origin: 0;
+	border-radius: 1px;
+}
+
+body.close .sidebar-toggle {
+	transition: left 0.25s ease-out;
+	width: 1.5rem;
+	height: 1.5rem;
+	left: 1.5rem;
+}
+
+body.close .sidebar-toggle span {
+	transform-origin: center;
+}
+
+body .sidebar-toggle span:nth-child(1) {
+	top: 0;
+}
+body .sidebar-toggle span:nth-child(2) {
+	top: 0.5rem;
+}
+body .sidebar-toggle span:nth-child(3) {
+	top: 1rem;
+}
+
+.sidebar-toggle:hover {
+	opacity: 0.8;
+}
+.sidebar-toggle .sidebar-toggle-button:hover {
+	opacity: 1;
+}
+
+@media screen and (max-width: 768px) {
+	body .sidebar-toggle {
+		left: 1rem;
+	}
+
+	body.close .sidebar-toggle {
+		left: calc(300px + 1.5rem);
+	}
+}
+
+/****** Markdown General ******/
+.markdown-section {
+	padding: 30px 30px 40px;
+}
+
+.markdown-section a {
+	text-decoration: none;
+	border-bottom: 0.1rem solid var(--theme-color);
+	transition: all 0.3s ease;
+}
+
+.markdown-section a:hover {
+	border-color: var(--theme-color-dark);
+	color: var(--theme-color-dark);
+}
+
+.markdown-section a.anchor {
+	border: none;
+}
+
+/****** Markdown Table ******/
+.markdown-section table {
+	display: table;
+}
+
+.markdown-section table tr {
+	border-width: 0.15rem 0;
+	border-style: solid;
+	border-color: #f1f1f2;
+}
+
+.markdown-section table thead tr {
+	text-transform: uppercase;
+	font-size: 90%;
+	border-top: none;
+}
+
+.markdown-section table tbody tr:last-of-type {
+	border-bottom: none;
+}
+
+.markdown-section table tr:nth-child(2n) {
+	background-color: transparent;
+}
+
+.markdown-section table td,
+.markdown-section table th {
+	border: none;
+	padding: 1.1rem 0.5rem;
+	text-align: left;
+}
+
+.markdown-section table td p {
+	margin: 0;
+}
+
+.markdown-section blockquote {
+	margin: 1em 0;
+}
+
+.markdown-section blockquote > p {
+	font-weight: 500;
+}
+
+.markdown-section em,
+.markdown-section blockquote {
+	color: var(--text-color-tertiary);
 }
 
 /****** CODE HIGHLIGHTING ******/
-.token.string {
-  color: #94FBEA;
-}
-
-.token.keyword {
-  color: #CBEC6B;
-}
-
+.token.version,
 .token.operator {
-  color: #FFAB87;
+	color: #42b983 !important;
+}
+
+.token.string {
+	color: var(--theme-color);
+}
+
+.lang-bash .token.function,
+.lang-json .token.property {
+	color: #e96900;
+}
+
+.token.string {
+	color: #42b983;
 }
 
 .token.boolean,
 .token.number {
-  color: #93A7FF;
+	color: var(--theme-color);
 }
-.token.function, .token.property {
-  color: #FFC805;
+
+.lang-bash .token.function,
+.lang-json .token.property {
+	color: #e96900;
+}
+
+.lang-requests,
+.lang-json,
+.lang-text {
+	font-weight: 600;
+}
+/****** COPY TO CLIPBOARD ******/
+.docsify-copy-code-button {
+	font-size: 0.7em !important;
 }

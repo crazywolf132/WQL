@@ -1,18 +1,15 @@
-<p align="center">
-<img src="assets/images/WQL.svg" height="200px" alt="WQL Lang" title="WQL Lang">
-</p>
+![logo](assets/images/WQL.svg)
 
 <b>Version</b> <small>1.0.2</small>
 
 > An awesome, super simple data manipulator!
 
-- Simple and lightweight
-- No external dependencies
-- Straight recursive descent parser
-- Works with any data structure
+- ⚡️️ Simple, Powerful, & Intuitive
+- 💎 First Class Documentation
+- 🔥 Works with any data structure
+- ⏱ Ultra fast results
 
-[![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](#)
-[![forthebadge](https://forthebadge.com/images/badges/made-with-javascript.svg)](#)
-
-[GitHub](https://github.service.anz/GroupPayments/Hades)
-[Lets go!](#WQL)
+<div class="buttons">
+  <a href="https://github.com/crazywolf132/WQL" target="_blank"><span>GitHub</span></a>
+  <a href="#/basics/README.md"><span>Get Started</span></a>
+</div>

@@ -68,7 +68,10 @@ export default class Interpreter {
 						ast[key]
 					);
 				} else if (this.hasKey(ast[key], 'fields')) {
-					let children = this.handleChildren(data, ast[key]);
+					let children = this.handleChildren(
+						ast[key],
+						data[key] || data
+					);
 					if (children != undefined)
 						obj[ast[key].alias || key] = children;
 				} else if (this.hasKey(ast[key], 'RequiredType')) {
@@ -120,11 +123,19 @@ export default class Interpreter {
 			: this.compile(field.fields, data || {});
 	}
 
-	handleChildren(data, field) {
+	handleChildren(key, data) {
 		if (
-			(this.hasKey(field, 'params') &&
-				this.meetsParams(data, field.params)) ||
-			!this.hasKey(field, 'params')
+			(this.hasKey(key, 'params') &&
+				this.meetsParams(data, key.params)) ||
+			!this.hasKey(key, 'params')
+		) {
+			if (this.hasKey(key, 'toConvert')) {
+				return this.convertToType(data, key);
+			} else {
+				return this.compile(key, data);
+			}
+		}
+	}
 		)
 			return this.hasKey(field, 'toConvert')
 				? this.convertToType(data, field)
