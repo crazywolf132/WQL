@@ -146,7 +146,11 @@ export default class Interpreter {
 		let children = Object.values(this.compile(field, data)).filter(
 			i => i != undefined
 		);
-		return field.toConvert === 'LIST' ? children : children.join(' ');
+		return field.toConvert === 'LIST'
+			? children
+			: field.toConvert === 'LIST_KEYS'
+			? Object.keys(data)
+			: children.join(' ');
 	}
 
 	basicField(data, field) {
