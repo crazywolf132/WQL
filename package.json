@@ -7,7 +7,7 @@
 		"lib"
 	],
 	"scripts": {
-		"test": "echo \"Error: no test specified\"",
+		"test": "jest",
 		"build": "babel src --out-dir lib --copy-files",
 		"dev": "nodemon --exec babel-node ./app.js"
 	},
@@ -21,7 +21,10 @@
 		"@babel/preset-env": "^7.3.1",
 		"@babel/register": "^7.0.0",
 		"babel-core": "7.0.0-bridge.0",
+		"babel-jest": "^24.8.0",
 		"babel-loader": "^8.0.5",
+		"jest": "^24.8.0",
+		"jest-cli": "^24.8.0",
 		"nodemon": "^1.18.9"
 	},
 	"dependencies": {
